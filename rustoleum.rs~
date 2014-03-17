@@ -9,6 +9,7 @@ fn main () {
   let mut reader = BufferedReader::new(stdin());
   println("Input WPM: ");
   let input = reader.read_line().unwrap();
+  println(input);
   let WPM = from_str::<int>(input.trim()).unwrap_or(300);
   println(WPM.to_str());
 }
