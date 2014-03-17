@@ -1,4 +1,4 @@
 rustoleum
 =========
 
-A simple speed reading app in Rust
+A simple speed reading app in Rust.
