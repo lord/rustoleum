@@ -7,7 +7,8 @@ use std::vec::OwnedStr;
 fn main () {
   let p = Path::new("data/example.txt");
   let contents = File::open(&p).read_to_end();
-  let mut string_iter = from_utf8(contents).split_str(" ");
+  let string_contents = from_utf8(contents).replace("\n", " ");
+  let mut string_iter = string_contents.split_str(" ");
   let mut reader = BufferedReader::new(stdin());
   println("Input WPM: ");
   let input = reader.read_line().unwrap();
@@ -23,15 +24,7 @@ fn main () {
 
   for words in string_vec.chunks(words_at_a_time) {
     println("\x1bc".into_owned().append(words.connect(" ")));
-    // println();
     std::io::timer::sleep(sleep_time.to_u64().unwrap());
   }
 
-  // for (i, word) in string_iter.enumerate() {
-	 //  print(word);
-  //   if i % words_at_a_time == (words_at_a_time - 1) {
-  //     println("");
-  //     println("\x1bc");
-  //   }
-  // }
 }
