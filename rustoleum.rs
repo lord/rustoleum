@@ -48,15 +48,16 @@ fn print_file(WPM: uint, WPL: uint, p: Path){
 		let contents = File::open(&p).read_to_end();
 		let mut string_iter = from_utf8(contents).words();
 		let string_vec = string_iter.to_owned_vec();
-		let sleep_time = 60000 / WPM * WPL;
+		let sleep_time = (60000 / WPM * WPL) as u64;
 		for words in string_vec.chunks(WPL) {
 			println("\x1bc".into_owned().append(words.connect(" ")));
-			std::io::timer::sleep(sleep_time.to_u64().unwrap());
+			std::io::timer::sleep(sleep_time);
 		}
 	} else {
 		println("The path specified does not exist. Please specify a valid path, or run rustoleum -h for help.");
 	}
 }
+
 fn main () {
 	if os::args().contains(&~"-h"){
 		print_usage();
