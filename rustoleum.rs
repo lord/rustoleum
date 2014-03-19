@@ -37,10 +37,16 @@ fn get_vals (args: ~[~str]) -> (uint, uint, Path){
 		let fallbackfile = &~"data/example.txt";
 		let path = args.tail().last_opt().unwrap_or(fallbackfile);
 		let p = Path::new(path.as_slice());
-		let WPM = from_str::<uint>(args[1 + args.position_elem(&~"-wpm").unwrap_or(-1)]).unwrap_or(300);
-		let WPL = from_str::<uint>(args[1 + args.position_elem(&~"-wpl").unwrap_or(-1)]).unwrap_or(1);
+		//let WPM = from_str::<uint>(args[1 + args.position_elem(&~"-wpm").unwrap_or(-1)]).unwrap_or(300);
+		//let WPL = from_str::<uint>(args[1 + args.position_elem(&~"-wpl").unwrap_or(-1)]).unwrap_or(1);
+		let WPM = get_arg(&args, &~"-wpm", 300);
+		let WPL = get_arg(&args, &~"-wpl", 300);
 		(WPM,WPL,p)
 	}
+}
+
+fn get_arg (args: &~[~str], flag: &~str, default: uint) -> uint {
+	from_str::<uint>(args[1 + args.position_elem(flag).unwrap_or(-1)]).unwrap_or(default)
 }
 
 fn print_file(WPM: uint, WPL: uint, p: Path){
