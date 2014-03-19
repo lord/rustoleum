@@ -55,7 +55,7 @@ fn print_file(WPM: uint, WPL: uint, p: Path){
 		}
 	} else {
 		println("The path specified does not exist. Please specify a valid path, or run rustoleum -h for help.");
-		pritnln("Calling rustoleum with no arguments will display data/example.txt at 300 WPM, with 1 word per line.");
+		println("Calling rustoleum with no arguments will display data/example.txt at 300 WPM, with 1 word per line.");
 	}
 }
 
